@@ -13,7 +13,7 @@ using namespace std;
 
 int main(){
     srand(time(NULL));
-int count=0;
+    int count=0;
     cout<< count<< endl;
     return 0;
 
