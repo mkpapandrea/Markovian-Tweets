@@ -22,7 +22,7 @@ class Word{
     followers.push_back(follow);
     }
 
-    Word();
+    //Word();
 
     void print_current(){
         cout<< "Word is:"<< wrd<< endl;
@@ -34,7 +34,13 @@ class Word{
 };
 
 
-    vector<Word> Markov_Chain;
+
+
+/////////////////////////////////////important//////////////////////////
+vector<Word> Markov_Chain;
+/////////////////////////////////////////////////////////////////////////
+
+
 
 
 
@@ -66,10 +72,10 @@ void make_tweet(){      //picks first word and then picks followers. then goes t
     string tweet= "";
     bool finished= false;
     int mcsize= Markov_Chain.size();
-    Word current;
+    //Word current;
     int current_index;
 
-    Word firstword= Markov_Chain.at.rand_index(mcsize);  //randomized first word
+    Word firstword= Markov_Chain.at(rand_index(mcsize));  //randomized first word
 
     for(int i=0; i< Markov_Chain.size(); i++){               //needs first index to pass in
         if( firstword.wrd == Markov_Chain.at(i).wrd){
@@ -80,7 +86,7 @@ void make_tweet(){      //picks first word and then picks followers. then goes t
    
 
     tweet= tweet +firstword.wrd;
-     current=firstword;
+     Word current=firstword;
 
 
 ////////////////////////////////////////////////begin while////////////////////////////////////
@@ -123,7 +129,7 @@ void parse_pair(string filename){       //pasre txt file into an array. makes wo
     string linearr[200];
     
     fstream file(filename);
-    if(file.is_open){
+    if(file.is_open()){
         for(int i=0; i<200; i++){
             file>> linearr[i];
         }
@@ -138,4 +144,11 @@ void parse_pair(string filename){       //pasre txt file into an array. makes wo
 
 
 
+}
+
+
+void print_some_tweets(int num){
+    for(int i=0; i<num; i++){
+        make_tweet();
+    }
 }
