@@ -7,6 +7,7 @@ class markov chain defines a vector of words. duplicate words get their follower
 #include <cstdlib>
 #include <iostream>
 #include <time.h>
+#include <fstream>
 using namespace std;
 
 
@@ -32,8 +33,7 @@ class Word{
 
 };
 
-class Chain{            //should it be a class
-public:
+
     vector<Word> Markov_Chain;
 
 
@@ -55,7 +55,6 @@ public:
 
     
 
-};
 
 
 int rand_index(int thingsize){       //picks random index for first word or from choice of followers
@@ -63,17 +62,17 @@ int rand_index(int thingsize){       //picks random index for first word or from
 }
 
 
-void make_tweet(Chain mc){      //picks first word and then picks followers. then goes to follower word. stops at 280 charaters
+void make_tweet(){      //picks first word and then picks followers. then goes to follower word. stops at 280 charaters
     string tweet= "";
     bool finished= false;
-    int mcsize= mc.Markov_Chain.size();
+    int mcsize= Markov_Chain.size();
     Word current;
     int current_index;
 
-    Word firstword= mc.Markov_Chain.at.rand_index(mcsize);  //randomized first word
+    Word firstword= Markov_Chain.at.rand_index(mcsize);  //randomized first word
 
-    for(int i=0; i< mc.Markov_Chain.size(); i++){               //needs first index to pass in
-        if( firstword.wrd == mc.Markov_Chain.at(i).wrd){
+    for(int i=0; i< Markov_Chain.size(); i++){               //needs first index to pass in
+        if( firstword.wrd == Markov_Chain.at(i).wrd){
             current_index=i;
         }
     }
@@ -99,12 +98,12 @@ void make_tweet(Chain mc){      //picks first word and then picks followers. the
 
 
         for(int i=0; i<mcsize; i++){        // update follow_word to current
-            if(follow_word== mc.Markov_Chain.at(i).wrd){
-                current= mc.Markov_Chain.at(i);
+            if(follow_word== Markov_Chain.at(i).wrd){
+                current= Markov_Chain.at(i);
             }
         }
-        for(int i=0; i<mc.Markov_Chain.size(); i++){        // get updated index of current
-            if(current.wrd== mc.Markov_Chain.at(i).wrd){
+        for(int i=0; i<Markov_Chain.size(); i++){        // get updated index of current
+            if(current.wrd== Markov_Chain.at(i).wrd){
                 current_index=i;
             }
         }
@@ -116,5 +115,27 @@ void make_tweet(Chain mc){      //picks first word and then picks followers. the
         }
 
     }
+
+}
+
+
+void parse_pair(string filename){       //pasre txt file into an array. makes word follower pair using i, i+1
+    string linearr[200];
+    
+    fstream file(filename);
+    if(file.is_open){
+        for(int i=0; i<200; i++){
+            file>> linearr[i];
+        }
+    }
+    file.close();
+
+    for(int i=0; i<199;i++){
+        Word w(linearr[i], linearr[i+1]);
+        add_word(linearr[i], linearr[i+1]);
+
+    }
+
+
 
 }
