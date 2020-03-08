@@ -126,19 +126,31 @@ void make_tweet(){      //picks first word and then picks followers. then goes t
 
 
 void parse_pair(string filename){       //pasre txt file into an array. makes word follower pair using i, i+1
-    string linearr[200];
+    vector<string> linevec;
+    string w;
+    ifstream file;
+    cout<< "moo"<< endl;
     
-    fstream file(filename);
-    if(file.is_open()){
-        for(int i=0; i<200; i++){
-            file>> linearr[i];
-        }
+    file.open(filename);
+    cout<< "e tu brute"<< endl;
+    if(!file){
+        cout<<"fucked up"<< endl;
     }
+    int filecount=0;
+    if(file.is_open()){
+       while(file.good()){
+           filecount++;
+        }
+    
+    }
+    cout<< filecount;
     file.close();
+    
 
-    for(int i=0; i<199;i++){
-        Word w(linearr[i], linearr[i+1]);
-        add_word(linearr[i], linearr[i+1]);
+    for(int i=0; i<linevec.size()-1;i++){
+        Word w(linevec.at(i), linevec.at(i+1));
+        add_word(linevec.at(i), linevec.at(i-1));
+        cout<< "dick"<< endl;
 
     }
 

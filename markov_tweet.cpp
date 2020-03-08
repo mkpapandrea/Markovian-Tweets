@@ -17,13 +17,14 @@ using namespace std;
 //print tweet with how ever many tweets wanted
 
 int main(){
-    int i;
-    string f= "tweetstuff";
-    parse_pair(f);
+   int i;
+   string f= "tweetstuff.txt";
+   parse_pair(f);
 
     cout<< "how many tweets y'all want?"<< endl;
     cin>>i;
-    print_some_tweets(i);
+    //print_some_tweets(i);
+    
 
 
     return 0;
